@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRIN – Software Studio Hamburg</title>
+<meta name="description" content="TRIN ist ein unabhängiges Software-Studio aus Hamburg. Moderne Apps und digitale Produkte – schlank, durchdacht, direkt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f3ef;
+    --bg2: #eceae4;
+    --fg: #1a1917;
+    --fg2: #6b6860;
+    --fg3: #9e9c97;
+    --accent: #1a1917;
+    --accent2: #c8b89a;
+    --white: #faf9f7;
+    --border: rgba(26,25,23,0.12);
+    --font: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+    --radius: 4px;
+    --radius-lg: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 40px; height: 56px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex; gap: 32px;
+    font-size: 13px; color: var(--fg2);
+  }
+
+  .nav-links a:hover { color: var(--fg); }
+
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    background: var(--fg);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.8; }
+
+  /* HERO */
+  .hero {
+    padding: 96px 40px 80px;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: end;
+    min-height: 72vh;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg2);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 99px;
+    margin-bottom: 32px;
+    background: var(--white);
+  }
+  .hero-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #5cb85c;
+  }
+
+  h1 {
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    margin-bottom: 28px;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--fg2);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--fg2);
+    max-width: 400px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--fg);
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.8; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid var(--border);
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-outline:hover { background: var(--bg2); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-self: end;
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .hero-stat {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+  }
+  .hero-stat-n {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .hero-stat-l {
+    font-size: 12px;
+    color: var(--fg2);
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    padding: 14px 0;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .marquee-inner {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: marquee 18s linear infinite;
+  }
+  .marquee-inner span {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg3);
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTIONS */
+  section { padding: 72px 40px; border-bottom: 1px solid var(--border); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--fg3);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: clamp(26px, 3.5vw, 38px);
+    font-weight: 300;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  h2 em { font-style: italic; color: var(--fg2); }
+
+  .section-sub {
+    font-size: 15px;
+    color: var(--fg2);
+    max-width: 460px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  /* VALUES */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--white);
+  }
+  .val { padding: 32px 28px; }
+  .val + .val { border-left: 1px solid var(--border); }
+  .val-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg3);
+    margin-bottom: 14px;
+  }
+  .val h3 { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+  .val p { font-size: 13px; color: var(--fg2); line-height: 1.65; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 48px;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 15px;
+    color: var(--fg2);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .about-card-top {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--fg2);
+  }
+  .about-name { font-size: 15px; font-weight: 500; }
+  .about-role { font-size: 12px; color: var(--fg2); margin-top: 2px; }
+  .about-detail { font-size: 12px; color: var(--fg2); line-height: 1.6; margin-bottom: 18px; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    color: var(--fg2);
+  }
+
+  /* APP SECTION */
+  .app-section {
+    background: var(--fg);
+    color: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 72px 40px;
+  }
+  .app-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: center;
+  }
+  .app-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .app-section h2 { color: var(--white); margin-bottom: 14px; }
+  .app-section h2 em { color: rgba(255,255,255,0.45); }
+  .app-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .app-feats { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .app-feat { display: flex; align-items: flex-start; gap: 12px; }
+  .feat-bullet {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .feat-bullet::after {
+    content: '';
+    width: 6px; height: 4px;
+    border-left: 1.5px solid rgba(255,255,255,0.7);
+    border-bottom: 1.5px solid rgba(255,255,255,0.7);
+    transform: rotate(-45deg) translateY(-1px);
+    display: block;
+  }
+  .feat-title { font-size: 14px; font-weight: 500; color: var(--white); }
+  .feat-desc { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 1px; }
+  .app-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white);
+    color: var(--fg);
+    border: none;
+    padding: 11px 22px;
+    border-radius: var(--radius);
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .app-btn:hover { opacity: 0.85; }
+
+  /* Phone mockup */
+  .phone {
+    width: 200px;
+    background: #2a2926;
+    border-radius: 32px;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 18px 14px;
+    flex-shrink: 0;
+  }
+  .phone-notch {
+    width: 44px; height: 5px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 99px;
+    margin: 0 auto 16px;
+  }
+  .phone-appname { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.9); margin-bottom: 3px; }
+  .phone-date { font-size: 10px; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+  .phone-bar-bg { height: 3px; background: rgba(255,255,255,0.1); border-radius: 99px; margin-bottom: 14px; }
+  .phone-bar-fill { height: 100%; width: 65%; background: #c8b89a; border-radius: 99px; }
+  .phone-task {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+  }
+  .phone-task.done { color: rgba(255,255,255,0.3); }
+  .phone-task.done span { text-decoration: line-through; }
+  .p-chk {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+  .p-chk.on {
+    background: #c8b89a;
+    border-color: #c8b89a;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .p-chk.on::after {
+    content: '';
+    width: 5px; height: 3px;
+    border-left: 1.5px solid #1a1917;
+    border-bottom: 1.5px solid #1a1917;
+    transform: rotate(-45deg) translateY(-1px);
+    display: block;
+  }
+
+  /* CONTACT */
+  .contact-inner {
+    max-width: 540px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-inner h2 { margin-bottom: 14px; }
+  .contact-inner p { font-size: 15px; color: var(--fg2); margin-bottom: 32px; }
+  .contact-email {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--fg);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    display: inline-block;
+    margin-bottom: 28px;
+    transition: color 0.15s;
+  }
+  .contact-email:hover { color: var(--fg2); }
+
+  /* FOOTER */
+  footer {
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-logo { font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; }
+  .footer-links { display: flex; gap: 24px; font-size: 12px; color: var(--fg2); }
+  .footer-links a:hover { color: var(--fg); }
+  .footer-copy { font-size: 11px; color: var(--fg3); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 56px 20px 48px; grid-template-columns: 1fr; }
+    .hero-right { max-width: 100%; flex-direction: row; }
+    section { padding: 48px 20px; }
+    .values-grid { grid-template-columns: 1fr; }
+    .val + .val { border-left: none; border-top: 1px solid var(--border); }
+    .about-grid { grid-template-columns: 1fr; }
+    .app-grid { grid-template-columns: 1fr; }
+    .phone { display: none; }
+    footer { padding: 20px; flex-direction: column; align-items: flex-start; }
+  }
+
+  /* FADE IN */
+  .fade {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">TRIN</div>
+  <div class="nav-links">
+    <a href="#about">Über uns</a>
+    <a href="#leistungen">Leistungen</a>
+    <a href="#app">Projekte</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <a href="#kontakt"><button class="nav-cta">Kontakt</button></a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left fade">
+    <div class="hero-tag">Hamburg, Deutschland &mdash; verfügbar für Projekte</div>
+    <h1>Software,<br>die <em>wirklich<br>funktioniert.</em></h1>
+    <p class="hero-sub">TRIN ist ein unabhängiges Software-Studio aus Hamburg. Moderne Apps und digitale Produkte – direkt, schlank und ohne Umwege.</p>
+    <div class="btn-row">
+      <a href="#kontakt"><button class="btn-primary">Projekt anfragen</button></a>
+      <a href="#app"><button class="btn-outline">Unsere App ansehen</button></a>
+    </div>
+  </div>
+  <div class="hero-right fade" style="transition-delay:0.15s">
+    <div class="hero-stat">
+      <div class="hero-stat-n">01</div>
+      <div class="hero-stat-l">Gründer &amp; Entwickler</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">HH</div>
+      <div class="hero-stat-l">Standort Hamburg</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-n">App</div>
+      <div class="hero-stat-l">Erstes Produkt im Play Store</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span>Android</span><span>&middot;</span>
+    <span>Kotlin</span><span>&middot;</span>
+    <span>React</span><span>&middot;</span>
+    <span>Node.js</span><span>&middot;</span>
+    <span>UI/UX Design</span><span>&middot;</span>
+    <span>Play Store</span><span>&middot;</span>
+    <span>Mobile Apps</span><span>&middot;</span>
+    <span>Web Apps</span><span>&middot;</span>
+    <span>Hamburg</span><span>&middot;</span>
+    <span>Android</span><span>&middot;</span>
+    <span>Kotlin</span><span>&middot;</span>
+    <span>React</span><span>&middot;</span>
+    <span>Node.js</span><span>&middot;</span>
+    <span>UI/UX Design</span><span>&middot;</span>
+    <span>Play Store</span><span>&middot;</span>
+    <span>Mobile Apps</span><span>&middot;</span>
+    <span>Web Apps</span><span>&middot;</span>
+    <span>Hamburg</span><span>&middot;</span>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="eyebrow fade">Wie ich arbeite</div>
+  <h2 class="fade">Kein Overhead.<br><em>Nur gute Software.</em></h2>
+  <p class="section-sub fade">Als Ein-Mann-Studio arbeite ich bewusst mit wenigen Projekten gleichzeitig – damit jede Zusammenarbeit die Aufmerksamkeit bekommt, die sie verdient.</p>
+  <div class="values-grid fade">
+    <div class="val">
+      <div class="val-num">01</div>
+      <h3>Direkt &amp; transparent</h3>
+      <p>Kein Ping-Pong durch Projektmanager. Du sprichst direkt mit der Person, die deinen Code schreibt.</p>
+    </div>
+    <div class="val">
+      <div class="val-num">02</div>
+      <h3>Lean entwickelt</h3>
+      <p>Ich baue, was gebraucht wird – nicht mehr. Schnelle Iteration statt langer Planungsphasen.</p>
+    </div>
+    <div class="val">
+      <div class="val-num">03</div>
+      <h3>Von Anfang bis Ende</h3>
+      <p>Konzept, Design, Entwicklung, Deployment – ich begleite Projekte durch den gesamten Prozess.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="eyebrow fade">Über TRIN</div>
+      <h2 class="fade">Ein Studio.<br><em>Volle Verantwortung.</em></h2>
+      <div class="fade">
+        <p>TRIN ist ein junges, unabhängiges Software-Studio aus Hamburg, gegründet von Christoph Hesse. Der Name steht für Klarheit, Direktheit und den Willen, Dinge wirklich fertig zu machen – nicht nur anzufangen.</p>
+        <p>Als Einzelunternehmer behalte ich den vollen Überblick über jedes Projekt. Keine stillen Teilhaber, keine ausgelagerten Teams. Wer mit TRIN arbeitet, arbeitet mit mir.</p>
+        <p>Der Fokus liegt auf mobilen Anwendungen für Android, sauberen Web-Applikationen und digitalen Produkten, die echten Mehrwert liefern.</p>
+      </div>
+    </div>
+    <div class="fade">
+      <div class="about-card">
+        <div class="about-card-top">
+          <div class="avatar">CH</div>
+          <div>
+            <div class="about-name">Christoph Hesse</div>
+            <div class="about-role">Gründer &amp; Entwickler &middot; TRIN</div>
+          </div>
+        </div>
+        <p class="about-detail">Softwareentwickler, Produktdenker und Macher aus Hamburg. Spezialisiert auf mobile Apps und moderne Web-Anwendungen.</p>
+        <div class="tag-list">
+          <span class="tag">Android</span>
+          <span class="tag">Kotlin</span>
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Play Store</span>
+          <span class="tag">Hamburg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APP -->
+<div class="app-section" id="app">
+  <div class="app-grid">
+    <div class="fade">
+      <div class="app-eyebrow">Aktuelles Produkt</div>
+      <h2>Clean Your Stuff, Mate!<br><em>Ordnung ohne Stress.</em></h2>
+      <p class="app-sub">Die smarte Putz-App für ein sauberes Zuhause. Mit persönlichen Checklisten, Erinnerungen und Fortschrittsanzeige – jetzt im Google Play Store.</p>
+      <div class="app-feats">
+        <div class="app-feat">
+          <div class="feat-bullet"></div>
+          <div>
+            <div class="feat-title">Smarte Checklisten</div>
+            <div class="feat-desc">Eigene Putzpläne erstellen und regelmäßig abhaken</div>
+          </div>
+        </div>
+        <div class="app-feat">
+          <div class="feat-bullet"></div>
+          <div>
+            <div class="feat-title">Push-Erinnerungen</div>
+            <div class="feat-desc">Keine Aufgabe mehr vergessen</div>
+          </div>
+        </div>
+        <div class="app-feat">
+          <div class="feat-bullet"></div>
+          <div>
+            <div class="feat-title">Fortschrittsanzeige</div>
+            <div class="feat-desc">Sauberkeit auf einen Blick verfolgen</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://play.google.com/store/apps/developer?id=TRIN" target="_blank">
+        <button class="app-btn">Im Play Store ansehen &rarr;</button>
+      </a>
+    </div>
+    <div class="phone fade" style="transition-delay:0.2s">
+      <div class="phone-notch"></div>
+      <div class="phone-appname">Clean Your Stuff, Mate!</div>
+      <div class="phone-date">Heute &middot; 4 Aufgaben</div>
+      <div class="phone-bar-bg"><div class="phone-bar-fill"></div></div>
+      <div class="phone-task done"><div class="p-chk on"></div><span>Bad putzen</span></div>
+      <div class="phone-task done"><div class="p-chk on"></div><span>Staubsaugen</span></div>
+      <div class="phone-task"><div class="p-chk"></div><span>Küche wischen</span></div>
+      <div class="phone-task"><div class="p-chk"></div><span>Fenster putzen</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="kontakt">
+  <div class="contact-inner fade">
+    <div class="eyebrow">Kontakt</div>
+    <h2>Hast du ein Projekt?</h2>
+    <p>Ich freue mich auf unverbindliche Anfragen – ob App-Idee, Web-Projekt oder etwas ganz anderes. Einfach melden.</p>
+    <a class="contact-email" href="mailto:c.hesse@trin.studio">c.hesse@trin.studio</a><br>
+    <a href="mailto:c.hesse@trin.studio"><button class="btn-primary">Nachricht schreiben</button></a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">TRIN</div>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="mailto:c.hesse@trin.studio">Kontakt</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 TRIN &ndash; Christoph Hesse, Hamburg</div>
+</footer>
+
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  fades.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
